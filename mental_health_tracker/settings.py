@@ -55,7 +55,7 @@ ROOT_URLCONF = 'mental_health_tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,3 +122,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","https:anggun.sasmitha:K8MLLYTB4NRk3RcnAgsFL6T9VPolTPBx@pbp.cs.ui.ac.id/anggun.sasmitha/mentalhealthtrack", "https:anggun.sasmitha:K8MLLYTB4NRk3RcnAgsFL6T9VPolTPBx@pbp.cs.ui.ac.id/anggun.sasmitha/mentalhealthtrack"]
