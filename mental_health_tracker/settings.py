@@ -132,6 +132,6 @@ else:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "anggun-sasmitha-mentalhealthtrack.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "anggun-sasmitha-mentalhealthtrack.pbp.cs.ui.ac.id", "10.0.2.2"]
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://anggun-sasmitha-mentalhealthtrack.pbp.cs.ui.ac.id/", "http://anggun-sasmitha-mentalhealthtrack.pbp.cs.ui.ac.id/"]
