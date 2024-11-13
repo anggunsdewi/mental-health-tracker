@@ -5,6 +5,7 @@
 <title>Mental Health Tracker</title>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
 {% endblock meta %}
+
 {% block content %}
 {% include 'navbar.html' %}
 <div class="overflow-x-hidden px-4 md:px-8 pb-8 pt-24 min-h-screen bg-gray-100 flex flex-col">
@@ -22,102 +23,109 @@
       <div class="h-full min-w-4 bg-indigo-700 mx-auto">
       </div>
     </div>
-</div>
-    <div class="px-3 mb-4">
-      <div class="flex rounded-md items-center bg-indigo-600 py-2 px-4 w-fit">
-        <h1 class="text-white text-center">Last Login: {{last_login}}</h1>
-      </div>
+  </div>
+  <div class="px-3 mb-4">
+    <div class="flex rounded-md items-center bg-indigo-600 py-2 px-4 w-fit">
+      <h1 class="text-white text-center">Last Login: {{last_login}}</h1>
     </div>
-    <div class="flex justify-end mb-6">
-      <a href="{% url 'main:create_mood_entry' %}" class="bg-indigo-400 hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 mx-4 ">
-        Add New Mood Entry
+  </div>
+  <div class="flex justify-end mb-6">
+    <a href="{% url 'main:create_mood_entry' %}"
+      class="bg-indigo-400 hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 mx-4 ">
+      Add New Mood Entry
     </a>
-    <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
+    <button data-modal-target="crudModal" data-modal-toggle="crudModal"
+      class="btn bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+      onclick="showModal();">
       Add New Mood Entry by AJAX
     </button>
-    </div>
-    <div id="mood_entry_cards"></div>
-    <div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
-      <div id="crudModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
-        <!-- Modal header -->
-        <div class="flex items-center justify-between p-4 border-b rounded-t">
-          <h3 class="text-xl font-semibold text-gray-900">
-            Add New Mood Entry
-          </h3>
-          <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
-            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
-            <span class="sr-only">Close modal</span>
-          </button>
-        </div>
-        <!-- Modal body -->
-        <div class="px-6 py-4 space-y-6 form-style">
-          <form id="moodEntryForm">
-            <div class="mb-4">
-              <label for="mood" class="block text-sm font-medium text-gray-700">Mood</label>
-              <input type="text" id="mood" name="mood" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter your mood" required>
-            </div>
-            <div class="mb-4">
-              <label for="feelings" class="block text-sm font-medium text-gray-700">Feelings</label>
-              <textarea id="feelings" name="feelings" rows="3" class="mt-1 block w-full h-52 resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Describe your feelings" required></textarea>
-            </div>
-            <div class="mb-4">
-              <label for="moodIntensity" class="block text-sm font-medium text-gray-700">Mood Intensity (1-10)</label>
-              <input type="number" id="moodIntensity" name="mood_intensity" min="1" max="10" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" required>
-            </div>
-          </form>
-        </div>
-        <!-- Modal footer -->
-        <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
-          <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg" id="cancelButton">Cancel</button>
-          <button type="submit" id="submitMoodEntry" form="moodEntryForm" class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
-        </div>
+  </div>
+
+  <div id="mood_entry_cards"></div>
+
+  <div id="crudModal" tabindex="-1" aria-hidden="true"
+    class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+    <div id="crudModalContent"
+      class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+      <!-- Modal header -->
+      <div class="flex items-center justify-between p-4 border-b rounded-t">
+        <h3 class="text-xl font-semibold text-gray-900">
+          Add New Mood Entry
+        </h3>
+        <button type="button"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+          id="closeModalBtn">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+      <!-- Modal body -->
+      <div class="px-6 py-4 space-y-6 form-style">
+        <form id="moodEntryForm">
+          <div class="mb-4">
+            <label for="mood" class="block text-sm font-medium text-gray-700">Mood</label>
+            <input type="text" id="mood" name="mood"
+              class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700"
+              placeholder="Enter your mood" required>
+          </div>
+          <div class="mb-4">
+            <label for="feelings" class="block text-sm font-medium text-gray-700">Feelings</label>
+            <textarea id="feelings" name="feelings" rows="3"
+              class="mt-1 block w-full h-52 resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700"
+              placeholder="Describe your feelings" required></textarea>
+          </div>
+          <div class="mb-4">
+            <label for="moodIntensity" class="block text-sm font-medium text-gray-700">Mood Intensity (1-10)</label>
+            <input type="number" id="moodIntensity" name="mood_intensity" min="1" max="10"
+              class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" required>
+          </div>
+        </form>
+      </div>
+      <!-- Modal footer -->
+      <div
+        class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 p-6 border-t border-gray-200 rounded-b justify-center md:justify-end">
+        <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg"
+          id="cancelButton">Cancel</button>
+        <button type="submit" id="submitMoodEntry" form="moodEntryForm"
+          class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg">Save</button>
       </div>
     </div>
+  </div>
 </div>
+
 <script>
-  function addMoodEntry() {
-    fetch("{% url 'main:add_mood_entry_ajax' %}", {
-      method: "POST",
-      body: new FormData(document.querySelector('#moodEntryForm')),
-    })
-    .then(response => refreshMoodEntries())
-
-    document.getElementById("moodEntryForm").reset(); 
-    document.querySelector("[data-modal-toggle='crudModal']").click();
-
-    return false;
+  async function getMoodEntries() {
+    return fetch("{% url 'main:show_json' %}").then((res) => res.json())
   }
-  async function getMoodEntries(){
-      return fetch("{% url 'main:show_json' %}").then((res) => res.json())
-  }
-async function refreshMoodEntries() {
-  document.getElementById("mood_entry_cards").innerHTML = "";
-  document.getElementById("mood_entry_cards").className = "";
-  const moodEntries = await getMoodEntries();
-  let htmlString = "";
-  let classNameString = "";
 
-  moodEntries.forEach((item) => {
-            const mood = DOMPurify.sanitize(item.fields.mood);
-            const feelings = DOMPurify.sanitize(item.fields.feelings);
+  async function refreshMoodEntries() {
+    document.getElementById("mood_entry_cards").innerHTML = "";
+    document.getElementById("mood_entry_cards").className = "";
+    const moodEntries = await getMoodEntries();
+    let htmlString = "";
+    let classNameString = "";
 
-        });
-
-  if (moodEntries.length === 0) {
+    if (moodEntries.length === 0) {
       classNameString = "flex flex-col items-center justify-center min-h-[24rem] p-6";
       htmlString = `
             <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
-                <img src="{% static 'image/sedih-banget.png' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
+                <img src="{% static 'image/sad.png' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
                 <p class="text-center text-gray-600 mt-4">Belum ada data mood pada mental health tracker.</p>
             </div>
         `;
     }
     else {
-        classNameString = "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full"
-        moodEntries.forEach((item) => {
-            htmlString += `
+      classNameString = "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full"
+      moodEntries.forEach((item) => {
+        const mood = DOMPurify.sanitize(item.fields.mood);
+        const feelings = DOMPurify.sanitize(item.fields.feelings);
+
+        htmlString += `
             <div class="relative break-inside-avoid">
                 <div class="absolute top-2 z-10 left-1/2 -translate-x-1/2 flex items-center -space-x-2">
                     <div class="w-[3rem] h-8 bg-gray-200 rounded-md opacity-80 -rotate-90"></div>
@@ -164,40 +172,61 @@ async function refreshMoodEntries() {
                 </div>
             </div>
             `;
-        });
+      });
     }
     document.getElementById("mood_entry_cards").className = classNameString;
     document.getElementById("mood_entry_cards").innerHTML = htmlString;
-}
-refreshMoodEntries();
-const modal = document.getElementById('crudModal');
-const modalContent = document.getElementById('crudModalContent');
+  }
+  refreshMoodEntries();
+
+  const modal = document.getElementById('crudModal');
+  const modalContent = document.getElementById('crudModalContent');
 
   function showModal() {
-      const modal = document.getElementById('crudModal');
-      const modalContent = document.getElementById('crudModalContent');
+    const modal = document.getElementById('crudModal');
+    const modalContent = document.getElementById('crudModalContent');
 
-      modal.classList.remove('hidden'); 
-      setTimeout(() => {
-        modalContent.classList.remove('opacity-0', 'scale-95');
-        modalContent.classList.add('opacity-100', 'scale-100');
-      }, 50); 
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modalContent.classList.remove('opacity-0', 'scale-95');
+      modalContent.classList.add('opacity-100', 'scale-100');
+    }, 50);
   }
 
   function hideModal() {
-      const modal = document.getElementById('crudModal');
-      const modalContent = document.getElementById('crudModalContent');
+    const modal = document.getElementById('crudModal');
+    const modalContent = document.getElementById('crudModalContent');
 
-      modalContent.classList.remove('opacity-100', 'scale-100');
-      modalContent.classList.add('opacity-0', 'scale-95');
+    modalContent.classList.remove('opacity-100', 'scale-100');
+    modalContent.classList.add('opacity-0', 'scale-95');
 
-      setTimeout(() => {
-        modal.classList.add('hidden');
-      }, 150); 
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 150);
   }
 
   document.getElementById("cancelButton").addEventListener("click", hideModal);
   document.getElementById("closeModalBtn").addEventListener("click", hideModal);
-  document.getElementById("submitMoodEntry").onclick = addMoodEntry
+  // DocumentType.getElementById("submitMoodEntry").addEventListener("click", hideModal);
+
+  function addMoodEntry() {
+    fetch("{% url 'main:add_mood_entry_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#moodEntryForm')),
+    })
+      .then(response => refreshMoodEntries())
+
+
+    document.getElementById("moodEntryForm").reset();
+    document.querySelector("[data-modal-toggle='crudModal']").click();
+    return false;
+  }
+
+
+  document.getElementById("moodEntryForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    addMoodEntry();
+  })
+
 </script>
 {% endblock content %}
