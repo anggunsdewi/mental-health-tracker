@@ -22,9 +22,9 @@ from django.http import JsonResponse
 @login_required(login_url='/login')
 def show_main(request):
     context = {
-        'npm' : '2306152310',
+        'npm' : '2306165673',
         'name': request.user.username,
-        'class': 'PBP E',
+        'class': 'PBP A',
         'last_login': request.COOKIES['last_login'],
     }
 
